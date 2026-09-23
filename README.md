@@ -260,3 +260,50 @@ curl -X POST http://localhost:3000/api/alunos/aluno-ana-souza/trabalhos \
 
 > Novos registros criados via API recebem ids no formato UUID (gerados com
 > `crypto.randomUUID()`), diferente dos ids legíveis usados nos dados fake acima.
+
+## Testes automatizados
+
+Os testes de API usam **Mocha**, **SuperTest** e **Chai** e ficam na pasta `test/`:
+
+```
+test/
+  auth.test.js              # login do admin (sucesso e senha inválida)
+  entregaTrabalho.test.js   # fluxo: login admin -> cadastro de aluno -> login aluno -> entrega de trabalho
+  helpers/
+    api.js                  # SuperTest apontando para a BASE_URL do .env
+    auth.js                 # login do admin (com cache do token) e login de usuário
+  factories/
+    alunoFactory.js         # gera alunos com e-mail e matrícula únicos
+  fixtures/
+    entregaTrabalho.json    # massa de dados do Data-Driven Testing
+```
+
+O teste de entrega de trabalho é **data-driven**: cada item do arquivo
+`test/fixtures/entregaTrabalho.json` gera um caso de teste. Para incluir um novo cenário, basta
+adicionar um objeto nesse arquivo.
+
+### Como executar
+
+1. Copie o arquivo de variáveis de ambiente e ajuste se necessário:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Com o MongoDB disponível, suba a API em um terminal:
+
+   ```bash
+   npm start
+   ```
+
+3. Em outro terminal, rode os testes:
+
+   ```bash
+   npm test
+   ```
+
+### Pipeline
+
+O workflow `.github/workflows/tests.yml` roda a cada push/PR na `main` (ou manualmente pela aba
+Actions): sobe um MongoDB como serviço, cria o `.env` a partir do `.env.example`, inicia a API e
+executa `npm test`.
