@@ -38,7 +38,7 @@
     "statusCodeEsperado": 400
   },
   {
-    "tituloDoTeste": "deve retornar 400 ao registrar trabalho sem disciplinaId",
+    "tituloDoTeste": "deve retornar 400 ao registrar trabalho sem disciplina",
     "nomeAluno": "Illidan Stormrage",
     "disciplinaId": "disciplina-matematica",
     "trabalho": {
