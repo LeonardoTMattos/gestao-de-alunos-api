@@ -1,7 +1,7 @@
 [
   {
     "tituloDoTeste": "deve registrar a entrega de um trabalho de Matemática",
-    "nomeAluno": "Pedro Alves",
+    "nomeAluno": "Thrall",
     "disciplinaId": "disciplina-matematica",
     "trabalho": {
       "titulo": "Lista de Exercícios 3",
@@ -11,7 +11,7 @@
   },
   {
     "tituloDoTeste": "deve registrar a entrega de um trabalho de História",
-    "nomeAluno": "Mariana Costa",
+    "nomeAluno": "Jaina Proudmoore",
     "disciplinaId": "disciplina-historia",
     "trabalho": {
       "titulo": "Resenha - Brasil Colônia",
@@ -21,7 +21,7 @@
   },
   {
     "tituloDoTeste": "deve registrar a entrega de um trabalho de Programação Web sem descrição",
-    "nomeAluno": "Lucas Ferreira",
+    "nomeAluno": "Sylvanas Windrunner",
     "disciplinaId": "disciplina-programacao-web",
     "trabalho": {
       "titulo": "Formulário com Validação"
@@ -30,10 +30,20 @@
   },
   {
     "tituloDoTeste": "deve retornar 400 ao registrar trabalho sem título",
-    "nomeAluno": "Juliana Rocha",
+    "nomeAluno": "Arthas Menethil",
     "disciplinaId": "disciplina-matematica",
     "trabalho": {
       "descricao": "Trabalho enviado sem o campo título."
+    },
+    "statusCodeEsperado": 400
+  },
+  {
+    "tituloDoTeste": "deve retornar 400 ao registrar trabalho sem disciplinaId",
+    "nomeAluno": "Illidan Stormrage",
+    "disciplinaId": "disciplina-matematica",
+    "trabalho": {
+      "titulo": "Relatório sem disciplina",
+      "disciplinaId": null
     },
     "statusCodeEsperado": 400
   }
