@@ -272,6 +272,7 @@ test/
   helpers/
     api.js                  # SuperTest apontando para a BASE_URL do .env
     auth.js                 # login do admin (com cache do token) e login de usuário
+    alunos.js               # cadastro e matrícula de aluno (usados na preparação dos testes)
   factories/
     alunoFactory.js         # gera alunos com e-mail e matrícula únicos
   fixtures/

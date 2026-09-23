@@ -2,6 +2,7 @@ import { createRequire } from 'node:module';
 import { expect } from 'chai';
 import api from './helpers/api.js';
 import { loginAdmin, loginUsuario } from './helpers/auth.js';
+import { cadastrarAluno, matricularAluno } from './helpers/alunos.js';
 import { novoAluno } from './factories/alunoFactory.js';
 
 const require = createRequire(import.meta.url);
@@ -18,18 +19,8 @@ describe('Entrega de trabalho pelo aluno', () => {
     it(caso.tituloDoTeste, async () => {
       // Arrange
       const dadosAluno = novoAluno(caso.nomeAluno);
-
-      const respostaCadastro = await api()
-        .post('/api/admin/alunos')
-        .set('Authorization', `Bearer ${tokenAdmin}`)
-        .send(dadosAluno);
-      const alunoId = respostaCadastro.body.id;
-
-      await api()
-        .post(`/api/admin/disciplinas/${caso.disciplinaId}/matriculas`)
-        .set('Authorization', `Bearer ${tokenAdmin}`)
-        .send({ alunoId });
-
+      const alunoId = await cadastrarAluno(tokenAdmin, dadosAluno);
+      await matricularAluno(tokenAdmin, caso.disciplinaId, alunoId);
       const tokenAluno = await loginUsuario(dadosAluno.email, dadosAluno.senha);
 
       // Act
